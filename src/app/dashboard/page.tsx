@@ -8,6 +8,7 @@ import { Habit } from '@/types/habit';
 import { storage } from '@/lib/storage';
 import { auth } from '@/lib/auth';
 import { toggleHabitCompletion } from '@/lib/habits';
+import { generateId } from '@/lib/utils';
 
 /**
  * Dashboard Page.
@@ -66,7 +67,7 @@ export default function DashboardPage() {
     } else {
       // Create new
       const newHabit: Habit = {
-        id: crypto.randomUUID(),
+        id: generateId(),
         userId: user?.userId || '',
         name: data.name || '',
         description: data.description || '',

@@ -1,5 +1,6 @@
 import { storage } from './storage';
 import { User, Session } from '../types/auth';
+import { generateId } from './utils';
 
 /**
  * Authentication service for managing local users and sessions.
@@ -38,7 +39,7 @@ export const auth = {
     }
 
     const newUser: User = {
-      id: crypto.randomUUID(),
+      id: generateId(),
       email,
       password,
       createdAt: new Date().toISOString(),
