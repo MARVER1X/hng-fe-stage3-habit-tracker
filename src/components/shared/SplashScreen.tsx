@@ -1,16 +1,17 @@
 import React from 'react';
 
 /**
- * Mandatory Splash Screen component.
- * Displays the app name and provides a testable interface for the boot sequence.
+ * SplashScreen component displays the application identity during the boot sequence.
  */
 const SplashScreen: React.FC = () => {
   return (
+    // Full-screen splash overlay is rendered
     <div 
       className="fixed inset-0 flex flex-col items-center justify-center bg-white dark:bg-gray-950 z-50"
       data-testid="splash-screen"
     >
       <div className="animate-pulse flex flex-col items-center">
+        {/* App identity icon and title are displayed */}
         <div className="w-16 h-16 bg-blue-600 rounded-2xl mb-4 flex items-center justify-center">
           <svg 
             className="w-10 h-10 text-white" 

@@ -6,9 +6,7 @@ import { auth } from '@/lib/auth';
 import Link from 'next/link';
 
 /**
- * LoginForm Component.
- * Handles user authentication via email and password.
- * Complies with Section 11 of the TRD.
+ * LoginForm component handles user authentication via email and password.
  */
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -22,7 +20,7 @@ const LoginForm: React.FC = () => {
     setError(null);
     setIsLoading(true);
 
-    // Simple validation
+    // Input fields are validated for presence
     if (!email || !password) {
       setError('Please fill in all fields');
       setIsLoading(false);
@@ -41,12 +39,14 @@ const LoginForm: React.FC = () => {
   };
 
   return (
+    // Authentication form is rendered within a centered container
     <form 
       onSubmit={handleSubmit} 
       className="w-full max-w-md bg-white dark:bg-gray-900 p-6 sm:p-8 rounded-2xl shadow-xl space-y-5 sm:space-y-6"
       data-testid="login-form"
     >
       <div className="text-center">
+        {/* Header section displays the welcome message */}
         <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-gray-100">Welcome Back</h2>
         <p className="mt-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">Please enter your details to sign in.</p>
       </div>
@@ -57,6 +57,7 @@ const LoginForm: React.FC = () => {
         </div>
       )}
 
+      {/* Input fields for user credentials are grouped */}
       <div className="space-y-4">
         <div>
           <label 

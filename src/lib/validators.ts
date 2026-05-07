@@ -1,9 +1,9 @@
 /**
- * Validates a habit name based on length and presence.
+ * Habit names are validated based on length and presence.
  * Rules:
- * - Trim incoming value
- * - Reject empty values
- * - Reject values longer than 60 characters
+ * - Values are trimmed
+ * - Empty values are rejected
+ * - Values exceeding 60 characters are rejected
  */
 export function validateHabitName(name: string): {
   valid: boolean;

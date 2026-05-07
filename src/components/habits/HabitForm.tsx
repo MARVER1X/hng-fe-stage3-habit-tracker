@@ -12,9 +12,7 @@ interface HabitFormProps {
 }
 
 /**
- * HabitForm Component.
- * Handles creation and editing of habits.
- * Complies with Section 12 of the TRD.
+ * HabitForm component handles the creation and modification of habits.
  */
 const HabitForm: React.FC<HabitFormProps> = ({ initialData, onSubmit, onCancel }) => {
   const [name, setName] = useState(initialData?.name || '');
@@ -39,6 +37,7 @@ const HabitForm: React.FC<HabitFormProps> = ({ initialData, onSubmit, onCancel }
   };
 
   return (
+    // Modal overlay and form container are rendered
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50 backdrop-blur-sm">
       <form 
         onSubmit={handleSubmit}
@@ -46,12 +45,14 @@ const HabitForm: React.FC<HabitFormProps> = ({ initialData, onSubmit, onCancel }
         data-testid="habit-form"
       >
         <div className="p-6 border-b border-gray-100 dark:border-gray-500">
+          {/* Header section displays the form intent */}
           <h2 className="text-xl font-bold text-gray-900 dark:text-gray-300">
             {initialData ? 'Edit Habit' : 'New Habit'}
           </h2>
         </div>
 
         <div className="p-6 space-y-4">
+          {/* Form fields for habit name, description, and frequency are rendered */}
           {error && (
             <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg border border-red-100">
               {error}
@@ -117,6 +118,7 @@ const HabitForm: React.FC<HabitFormProps> = ({ initialData, onSubmit, onCancel }
         </div>
 
         <div className="p-6 bg-gray-50 dark:bg-gray-900 flex gap-3">
+          {/* Form action buttons are provided */}
           <button
             type="button"
             onClick={onCancel}

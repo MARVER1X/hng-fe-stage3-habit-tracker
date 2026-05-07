@@ -3,21 +3,21 @@ import { User, Session } from '../types/auth';
 import { generateId } from './utils';
 
 /**
- * Authentication service for managing local users and sessions.
- * Encapsulates the logic for signup, login, and session validation.
+ * Authentication service manages local users and sessions.
+ * Logic for signup, login, and session validation is encapsulated here.
  */
 export const auth = {
-  // Check if a session exists
+  // Session existence is verified
   isAuthenticated: (): boolean => {
     return storage.getSession() !== null;
   },
 
-  // Get current user details
+  // Current user details are retrieved
   getCurrentUser: (): Session | null => {
     return storage.getSession();
   },
 
-  // Log in a user
+  // User authentication is performed
   login: (email: string, password: string): { success: boolean; error?: string } => {
     const users = storage.getUsers();
     const user = users.find(u => u.email === email && u.password === password);
@@ -30,7 +30,7 @@ export const auth = {
     return { success: true };
   },
 
-  // Sign up a new user
+  // New user registration is handled
   signup: (email: string, password: string): { success: boolean; error?: string } => {
     const users = storage.getUsers();
     

@@ -7,8 +7,7 @@ const ASSETS_TO_CACHE = [
 ];
 
 /**
- * Service Worker: Install Event
- * Caches the core "App Shell" for offline access.
+ * Core assets are cached for offline access during the installation phase.
  */
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -19,8 +18,7 @@ self.addEventListener('install', (event) => {
 });
 
 /**
- * Service Worker: Fetch Event
- * Intercepts network requests and serves from cache if available (Offline-First).
+ * Network requests are intercepted and served from cache when available.
  */
 self.addEventListener('fetch', (event) => {
   event.respondWith(

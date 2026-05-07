@@ -11,9 +11,7 @@ import { toggleHabitCompletion } from '@/lib/habits';
 import { generateId } from '@/lib/utils';
 
 /**
- * Dashboard Page.
- * Main hub for habit management and tracking.
- * Complies with Section 12 of the TRD.
+ * Dashboard page serves as the primary hub for habit management and tracking.
  */
 export default function DashboardPage() {
   const [habits, setHabits] = useState<Habit[]>([]);
@@ -21,20 +19,20 @@ export default function DashboardPage() {
   const [editingHabit, setEditingHabit] = useState<Habit | undefined>(undefined);
   const [user, setUser] = useState<{ email: string; userId: string } | null>(null);
 
-  // Load initial data
+  // Initial data is loaded on mount
   useEffect(() => {
     const session = auth.getCurrentUser();
     if (session) {
       setUser(session);
       const allHabits = storage.getHabits();
-      // Filter habits for the current user
+      // Habits are filtered for the current user
       const userHabits = allHabits.filter(h => h.userId === session.userId);
       setHabits(userHabits);
     }
   }, []);
 
   const saveAndRefresh = (updatedHabits: Habit[]) => {
-    // We must merge with habits from other users in storage
+    // Habits from other users are merged with updated data for persistence
     const allHabits = storage.getHabits();
     const otherUsersHabits = allHabits.filter(h => h.userId !== user?.userId);
     storage.saveHabits([...otherUsersHabits, ...updatedHabits]);
@@ -59,13 +57,13 @@ export default function DashboardPage() {
 
   const handleFormSubmit = (data: Partial<Habit>) => {
     if (editingHabit) {
-      // Update existing
+      // Existing habit is updated
       const updated = habits.map(h => 
         h.id === editingHabit.id ? { ...h, ...data } : h
       );
       saveAndRefresh(updated);
     } else {
-      // Create new
+      // New habit is initialized and saved
       const newHabit: Habit = {
         id: generateId(),
         userId: user?.userId || '',
@@ -88,11 +86,13 @@ export default function DashboardPage() {
 
   return (
     <ProtectedRoute>
+      {/* Dashboard main layout container is rendered */}
       <main 
         className="min-h-screen bg-white dark:bg-gray-950 flex flex-col items-center"
         data-testid="dashboard-page"
       >
         <div className="w-full max-w-3xl px-4 py-6 sm:py-8">
+          {/* Header section includes page title, user info, and primary actions */}
           <header className="flex justify-between items-center mb-6 sm:mb-10">
             <div>
               <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-gray-300 tracking-tight">My Habits</h1>
@@ -122,6 +122,7 @@ export default function DashboardPage() {
             </div>
           </header>
 
+          {/* Habit list container is rendered */}
           <HabitList 
             habits={habits} 
             onToggle={handleToggle} 
@@ -132,6 +133,7 @@ export default function DashboardPage() {
             }}
           />
 
+          {/* Habit creation/editing form modal is conditionally rendered */}
           {showForm && (
             <HabitForm 
               initialData={editingHabit}

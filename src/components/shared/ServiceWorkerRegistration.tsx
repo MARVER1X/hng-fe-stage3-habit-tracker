@@ -3,8 +3,7 @@
 import { useEffect } from 'react';
 
 /**
- * Client Component for registering the Service Worker.
- * Extracted from RootLayout to keep the layout as a Server Component.
+ * Service Worker registration is handled via this client component.
  */
 export default function ServiceWorkerRegistration() {
   useEffect(() => {
@@ -13,8 +12,7 @@ export default function ServiceWorkerRegistration() {
       'serviceWorker' in navigator &&
       window.location.hostname !== 'localhost'
     ) {
-      // We only register if it's not localhost to avoid dev caching issues
-      // Or you can register on localhost if you want to test PWA features locally
+      // Service worker is registered for offline support
       navigator.serviceWorker
         .register('/sw.js')
         .then((reg) => console.log('Service Worker registered', reg))
@@ -24,7 +22,7 @@ export default function ServiceWorkerRegistration() {
       'serviceWorker' in navigator &&
       window.location.hostname === 'localhost'
     ) {
-        // For HNG tasks, we usually want to prove it's registered even on local
+        // Service worker is registered on localhost for development testing
         navigator.serviceWorker
         .register('/sw.js')
         .then((reg) => console.log('Service Worker registered on Localhost', reg))

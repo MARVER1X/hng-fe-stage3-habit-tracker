@@ -13,8 +13,7 @@ interface HabitCardProps {
 }
 
 /**
- * HabitCard Component.
- * Displays individual habit progress and controls.
+ * HabitCard component displays progress and management controls for an individual habit.
  */
 const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggle, onDelete, onEdit }) => {
   const [isConfirmingDelete, setIsConfirmingDelete] = React.useState(false);
@@ -24,11 +23,13 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggle, onDelete, onEdit
   const isCompletedToday = habit.completions.includes(today);
 
   return (
+    // Individual habit card is rendered with progress and controls
     <div 
-      className="bg-white dark:bg-gray-900 p-4 sm:p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex items-center justify-between group transition-all hover:shadow-md"
+      className="bg-white dark:bg-gray-950 p-4 sm:p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex items-center justify-between group transition-all hover:shadow-md"
       data-testid={`habit-card-${slug}`}
     >
       <div className="flex-1">
+        {/* Habit information and metadata are displayed */}
         <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
           <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100">{habit.name}</h3>
           <span className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold rounded-full uppercase tracking-wider">
@@ -41,6 +42,7 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggle, onDelete, onEdit
         )}
 
         <div className="flex items-center gap-3 sm:gap-4">
+          {/* Streak indicator and management actions are grouped */}
           <div className="flex items-center gap-1.5 text-orange-600">
             <span className="text-base sm:text-lg font-bold" data-testid={`habit-streak-${slug}`}>{streak}</span>
             <span className="text-[10px] sm:text-xs font-medium uppercase">Day Streak</span>
@@ -48,6 +50,7 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggle, onDelete, onEdit
           
             {isConfirmingDelete ? (
               <div className="flex gap-2">
+                {/* Delete confirmation is requested */}
                 <button 
                   onClick={() => onDelete(habit.id)}
                   className="text-xs font-bold text-red-600 hover:underline"
@@ -64,6 +67,7 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggle, onDelete, onEdit
               </div>
             ) : (
               <>
+                {/* Edit and Delete actions are available */}
                 <button 
                   onClick={() => onEdit(habit)}
                   className="text-[10px] sm:text-xs font-semibold text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1"
@@ -85,6 +89,7 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggle, onDelete, onEdit
         </div>
       </div>
 
+      {/* Completion toggle control is rendered */}
       <button
         onClick={() => onToggle(habit.id)}
         data-testid={`habit-complete-${slug}`}

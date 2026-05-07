@@ -1,12 +1,11 @@
 import { Habit } from '../types/habit';
 
 /**
- * Toggles a completion date for a habit.
+ * Completion dates for habits are toggled.
  * Rules:
- * - If date doesn't exist, add it
- * - If date exists, remove it
- * - No duplicates in returned habit
- * - No mutation of original input
+ * - Dates are added if absent, removed if present
+ * - Uniqueness is maintained in the returned habit
+ * - Input mutation is avoided
  */
 export function toggleHabitCompletion(habit: Habit, date: string): Habit {
   const isCompleted = habit.completions.includes(date);

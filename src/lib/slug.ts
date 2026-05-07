@@ -1,10 +1,10 @@
 /**
- * Generates a stable, lowercase, hyphenated slug from a habit name.
+ * Stable, lowercase, hyphenated slugs are generated from habit names.
  * Rules:
- * - Convert to lowercase
- * - Trim leading/trailing spaces
- * - Replace one or more spaces with a single hyphen
- * - Remove non-alphanumeric characters except hyphens
+ * - Conversion to lowercase
+ * - Trimming of leading/trailing spaces
+ * - Replacement of spaces with single hyphens
+ * - Removal of non-alphanumeric characters (excluding hyphens)
  */
 export function getHabitSlug(name: string): string {
   return name

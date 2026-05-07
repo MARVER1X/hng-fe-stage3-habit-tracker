@@ -1,10 +1,10 @@
 /**
- * Calculates the current streak of consecutive days a habit has been completed.
+ * Consecutive days of habit completion are calculated.
  * Rules:
- * - Remove duplicates
- * - Sort by date
+ * - Duplicates are removed
+ * - Data is sorted by date
  * - If today is not completed, streak is 0
- * - If today is completed, count consecutive backwards from today
+ * - If today is completed, consecutive calendar days are counted backwards
  */
 export function calculateCurrentStreak(completions: string[], today?: string): number {
   if (completions.length === 0) return 0;

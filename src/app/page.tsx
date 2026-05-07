@@ -6,9 +6,8 @@ import { auth } from '@/lib/auth';
 import SplashScreen from '@/components/shared/SplashScreen';
 
 /**
- * Root Route: Splash/Boot Sequence.
- * Responsible for initial session check and redirection with a mandatory delay.
- * Target duration: 1200ms (within 800ms - 2000ms range).
+ * Root route handles the initial application boot sequence.
+ * Session validation and redirection are performed after a mandatory splash delay.
  */
 export default function Home() {
   const router = useRouter();
@@ -16,7 +15,7 @@ export default function Home() {
 
   useEffect(() => {
     const checkSession = async () => {
-      // Small artificial delay to ensure splash screen is testable
+      // Artificial delay is applied to ensure splash visibility for testing purposes
       await new Promise(resolve => setTimeout(resolve, 1200));
       
       const authenticated = auth.isAuthenticated();
@@ -33,7 +32,7 @@ export default function Home() {
     checkSession();
   }, []);
 
-  // Render the splash screen while checking session
+  // Splash screen is rendered during initialization phase
   if (isInitializing) {
     return <SplashScreen />;
   }

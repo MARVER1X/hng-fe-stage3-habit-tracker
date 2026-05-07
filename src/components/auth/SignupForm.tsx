@@ -6,9 +6,7 @@ import { auth } from '@/lib/auth';
 import Link from 'next/link';
 
 /**
- * SignupForm Component.
- * Handles new user registration.
- * Complies with Section 11 of the TRD.
+ * SignupForm component handles new user registration.
  */
 const SignupForm: React.FC = () => {
   const router = useRouter();
@@ -46,12 +44,14 @@ const SignupForm: React.FC = () => {
   };
 
   return (
+    // New user registration form is rendered
     <form 
       onSubmit={handleSubmit} 
       className="w-full max-w-md bg-white dark:bg-gray-900 p-6 sm:p-8 rounded-2xl shadow-xl space-y-5 sm:space-y-6"
       data-testid="signup-form"
     >
       <div className="text-center">
+        {/* Header section includes registration title and description */}
         <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-gray-100">Create Account</h2>
         <p className="mt-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">Join us to start tracking your habits.</p>
       </div>
@@ -62,6 +62,7 @@ const SignupForm: React.FC = () => {
         </div>
       )}
 
+      {/* Input fields for registration details are grouped */}
       <div className="space-y-4">
         <div>
           <label 

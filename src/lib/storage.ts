@@ -3,8 +3,8 @@ import { User, Session } from '../types/auth';
 import { Habit } from '../types/habit';
 
 /**
- * High-level LocalStorage API for the Habit Tracker.
- * Provides deterministic access to users, sessions, and habits.
+ * Deterministic access to users, sessions, and habits is provided via 
+ * the LocalStorage API.
  */
 export const storage = {
   // USERS

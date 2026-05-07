@@ -18,8 +18,9 @@ interface HabitListProps {
 const HabitList: React.FC<HabitListProps> = ({ habits, onToggle, onDelete, onEdit }) => {
   if (habits.length === 0) {
     return (
+      // Empty state is rendered when no habits are available
       <section 
-        className="flex flex-col items-center justify-center py-24 text-center animate-in fade-in slide-in-from-bottom-4 duration-700" 
+        className="mt-20 flex flex-col items-center justify-center text-center p-8 bg-gray-50 dark:bg-gray-900 rounded-3xl border-2 border-dashed border-gray-200 dark:border-gray-800" 
         data-testid="empty-state"
       >
         <div className="w-24 h-24 bg-blue-50 dark:bg-gray-700 rounded-full flex items-center justify-center mb-6 shadow-inner">
@@ -36,7 +37,8 @@ const HabitList: React.FC<HabitListProps> = ({ habits, onToggle, onDelete, onEdi
   }
 
   return (
-    <div className="space-y-4 w-full">
+    // Habit cards are mapped and rendered in a grid layout
+    <div className="grid grid-cols-1 gap-4 w-full animate-in fade-in slide-in-from-bottom-4 duration-500">
       {habits.map((habit) => (
         <HabitCard 
           key={habit.id} 
