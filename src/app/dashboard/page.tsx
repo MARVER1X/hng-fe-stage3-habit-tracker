@@ -1,36 +1,149 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import ProtectedRoute from '@/components/shared/ProtectedRoute';
+import HabitList from '@/components/habits/HabitList';
+import HabitForm from '@/components/habits/HabitForm';
+import { Habit } from '@/types/habit';
+import { storage } from '@/lib/storage';
+import { auth } from '@/lib/auth';
+import { toggleHabitCompletion } from '@/lib/habits';
 
 /**
- * Dashboard Page Route.
- * Protected by authentication wrapper.
- * Complies with Section 10/12 of the TRD.
+ * Dashboard Page.
+ * Main hub for habit management and tracking.
+ * Complies with Section 12 of the TRD.
  */
 export default function DashboardPage() {
+  const [habits, setHabits] = useState<Habit[]>([]);
+  const [showForm, setShowForm] = useState(false);
+  const [editingHabit, setEditingHabit] = useState<Habit | undefined>(undefined);
+  const [user, setUser] = useState<{ email: string; userId: string } | null>(null);
+
+  // Load initial data
+  useEffect(() => {
+    const session = auth.getCurrentUser();
+    if (session) {
+      setUser(session);
+      const allHabits = storage.getHabits();
+      // Filter habits for the current user
+      const userHabits = allHabits.filter(h => h.userId === session.userId);
+      setHabits(userHabits);
+    }
+  }, []);
+
+  const saveAndRefresh = (updatedHabits: Habit[]) => {
+    // We must merge with habits from other users in storage
+    const allHabits = storage.getHabits();
+    const otherUsersHabits = allHabits.filter(h => h.userId !== user?.userId);
+    storage.saveHabits([...otherUsersHabits, ...updatedHabits]);
+    setHabits(updatedHabits);
+  };
+
+  const handleToggle = (id: string) => {
+    const today = new Date().toISOString().split('T')[0];
+    const updated = habits.map(h => {
+      if (h.id === id) {
+        return toggleHabitCompletion(h, today);
+      }
+      return h;
+    });
+    saveAndRefresh(updated);
+  };
+
+  const handleDelete = (id: string) => {
+    if (window.confirm('Are you sure you want to delete this habit? All progress will be lost.')) {
+      const updated = habits.filter(h => h.id !== id);
+      saveAndRefresh(updated);
+    }
+  };
+
+  const handleFormSubmit = (data: Partial<Habit>) => {
+    if (editingHabit) {
+      // Update existing
+      const updated = habits.map(h => 
+        h.id === editingHabit.id ? { ...h, ...data } : h
+      );
+      saveAndRefresh(updated);
+    } else {
+      // Create new
+      const newHabit: Habit = {
+        id: Math.random().toString(36).substring(2, 9),
+        userId: user?.userId || '',
+        name: data.name || '',
+        description: data.description || '',
+        frequency: 'daily',
+        createdAt: new Date().toISOString(),
+        completions: [],
+      };
+      saveAndRefresh([...habits, newHabit]);
+    }
+    setShowForm(false);
+    setEditingHabit(undefined);
+  };
+
+  const handleLogout = () => {
+    auth.logout();
+    window.location.href = '/login';
+  };
+
   return (
     <ProtectedRoute>
       <main 
-        className="min-h-screen bg-white flex flex-col items-center p-6"
+        className="min-h-screen bg-white flex flex-col items-center"
         data-testid="dashboard-page"
       >
-        <div className="w-full max-w-2xl">
-          <header className="flex justify-between items-center mb-8">
-            <h1 className="text-2xl font-bold text-gray-900">My Habits</h1>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-              + New Habit
-            </button>
+        <div className="w-full max-w-3xl px-4 py-8">
+          <header className="flex justify-between items-center mb-10">
+            <div>
+              <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">My Habits</h1>
+              <p className="text-gray-500 text-sm mt-1">Hello, {user?.email}</p>
+            </div>
+            
+            <div className="flex gap-3">
+              <button 
+                onClick={() => setShowForm(true)}
+                className="px-6 py-3 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-100 flex items-center gap-2"
+              >
+                <span className="text-xl">+</span>
+                New Habit
+              </button>
+              
+              <button 
+                onClick={handleLogout}
+                className="p-3 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-2xl transition-all"
+                title="Logout"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+              </button>
+            </div>
           </header>
 
-          <section className="flex flex-col items-center justify-center py-20 text-center" data-testid="empty-state">
-            <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-              <svg className="w-10 h-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-            </div>
-            <h3 className="text-lg font-medium text-gray-900">No habits yet</h3>
-            <p className="text-gray-500 mt-1">Start your first habit today and build a streak!</p>
-          </section>
+          <HabitList 
+            habits={habits} 
+            onToggle={handleToggle} 
+            onDelete={handleDelete}
+            onEdit={(h) => {
+              setEditingHabit(h);
+              setShowForm(true);
+            }}
+          />
+
+          {showForm && (
+            <HabitForm 
+              initialData={editingHabit}
+              onSubmit={handleFormSubmit}
+              onCancel={() => {
+                setShowForm(false);
+                setEditingHabit(undefined);
+              }}
+            />
+          )}
         </div>
       </main>
     </ProtectedRoute>
   );
 }
+
