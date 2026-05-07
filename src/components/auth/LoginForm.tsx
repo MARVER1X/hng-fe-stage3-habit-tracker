@@ -111,7 +111,7 @@ const LoginForm: React.FC = () => {
       </button>
 
       <p className="text-center text-[10px] font-black text-gray-400 uppercase tracking-widest">
-        Don't have an account?{' '}
+        Don&apos;t have an account?{' '}
         <Link href="/signup" className="text-[var(--neon-magenta)] hover:underline">
           Sign up
         </Link>

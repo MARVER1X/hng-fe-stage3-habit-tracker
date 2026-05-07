@@ -18,7 +18,7 @@ export function calculateCurrentStreak(completions: string[], today?: string): n
   if (!uniqueSorted.includes(now)) return 0;
 
   let streak = 0;
-  let currentDate = new Date(now);
+  const currentDate = new Date(now);
 
   for (let i = 0; i < uniqueSorted.length; i++) {
     const expectedDateStr = currentDate.toISOString().split('T')[0];

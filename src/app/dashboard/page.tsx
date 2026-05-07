@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ProtectedRoute from '@/components/shared/ProtectedRoute';
 import HabitList from '@/components/habits/HabitList';
 import HabitForm from '@/components/habits/HabitForm';
@@ -14,22 +14,16 @@ import { generateId } from '@/lib/utils';
  * Dashboard page serves as the primary hub for habit management and tracking.
  */
 export default function DashboardPage() {
-  const [habits, setHabits] = useState<Habit[]>([]);
-  const [showForm, setShowForm] = useState(false);
-  const [editingHabit, setEditingHabit] = useState<Habit | undefined>(undefined);
-  const [user, setUser] = useState<{ email: string; userId: string } | null>(null);
-
-  // Initial data is loaded on mount
-  useEffect(() => {
+  const [user] = useState<{ email: string; userId: string } | null>(() => auth.getCurrentUser());
+  const [habits, setHabits] = useState<Habit[]>(() => {
     const session = auth.getCurrentUser();
     if (session) {
-      setUser(session);
-      const allHabits = storage.getHabits();
-      // Habits are filtered for the current user
-      const userHabits = allHabits.filter(h => h.userId === session.userId);
-      setHabits(userHabits);
+      return storage.getHabits().filter(h => h.userId === session.userId);
     }
-  }, []);
+    return [];
+  });
+  const [showForm, setShowForm] = useState(false);
+  const [editingHabit, setEditingHabit] = useState<Habit | undefined>(undefined);
 
   const saveAndRefresh = (updatedHabits: Habit[]) => {
     // Habits from other users are merged with updated data for persistence
@@ -99,7 +93,7 @@ export default function DashboardPage() {
                 My Habits
               </h1>
               <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mt-1">
-                Hello, {user?.email}
+                Hello, {user?.email.split('@')[0]}
               </p>
             </div>
             

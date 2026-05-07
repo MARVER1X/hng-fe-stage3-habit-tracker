@@ -30,7 +30,7 @@ export default function Home() {
     };
 
     checkSession();
-  }, []);
+  }, [router]);
 
   // Splash screen is rendered during initialization phase
   if (isInitializing) {

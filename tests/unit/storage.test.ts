@@ -34,7 +34,7 @@ describe('Storage Service', () => {
   });
 
   it('should save and retrieve habits', () => {
-    const habits = [{ id: 'h1', userId: '1', name: 'Run', completions: [], createdAt: '', frequency: 'daily' as const }];
+    const habits = [{ id: 'h1', userId: '1', name: 'Run', description: '', completions: [], createdAt: '', frequency: 'daily' as const }];
     storage.saveHabits(habits);
     expect(storage.getHabits()).toEqual(habits);
   });
