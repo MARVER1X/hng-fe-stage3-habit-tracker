@@ -85,7 +85,7 @@ export default function DashboardPage() {
         className="min-h-screen bg-white dark:bg-gray-950 flex flex-col items-center relative overflow-hidden"
         data-testid="dashboard-page"
       >
-        <div className="w-full max-w-3xl px-4 py-6 sm:py-8 relative z-10">
+        <div className="w-full max-w-6xl px-4 py-6 sm:py-8 lg:py-12 relative z-10">
           {/* Header section includes page title, user info, and primary actions */}
           <header className="flex justify-between items-center mb-10 border-b-2 border-black dark:border-[var(--surface-border)] pb-6">
             <div>
