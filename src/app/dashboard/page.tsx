@@ -88,30 +88,33 @@ export default function DashboardPage() {
     <ProtectedRoute>
       {/* Dashboard main layout container is rendered */}
       <main 
-        className="min-h-screen bg-white dark:bg-gray-950 flex flex-col items-center"
+        className="min-h-screen bg-white dark:bg-gray-950 flex flex-col items-center relative overflow-hidden"
         data-testid="dashboard-page"
       >
-        <div className="w-full max-w-3xl px-4 py-6 sm:py-8">
+        <div className="w-full max-w-3xl px-4 py-6 sm:py-8 relative z-10">
           {/* Header section includes page title, user info, and primary actions */}
-          <header className="flex justify-between items-center mb-6 sm:mb-10">
+          <header className="flex justify-between items-center mb-10 border-b-2 border-black dark:border-[var(--surface-border)] pb-6">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-gray-300 tracking-tight">My Habits</h1>
-              <p className="text-gray-500 dark:text-gray-300 text-xs sm:text-sm mt-1">Hello, {user?.email}</p>
+              <h1 className="text-3xl sm:text-4xl font-black text-gray-900 dark:text-gray-100 uppercase italic tracking-tighter leading-none">
+                My Habits
+              </h1>
+              <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mt-1">
+                Hello, {user?.email}
+              </p>
             </div>
             
             <div className="flex gap-2 sm:gap-3">
               <button 
                 onClick={() => setShowForm(true)}
-                className="px-3 py-2 sm:px-6 sm:py-3 bg-blue-600 text-white rounded-2xl text-xs sm:text-base font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 dark:shadow-none flex items-center gap-1 sm:gap-2"
+                className="px-4 py-2 bg-black text-[var(--neon-cyan)] border border-[var(--neon-cyan)] rounded-sm text-xs font-black uppercase tracking-widest hover:bg-[var(--neon-cyan)] hover:text-black transition-all hover:cyber-glow-cyan"
                 data-testid="create-habit-button"
               >
-                <span className="text-base sm:text-xl">+</span>
-                New Habit
+                + New Habit
               </button>
               
               <button 
                 onClick={handleLogout}
-                className="p-2 sm:p-3 text-gray-400 dark:text-gray-300 hover:text-red-600 hover:bg-red-50 rounded-2xl transition-all"
+                className="p-2 sm:p-3 text-gray-400 dark:text-gray-500 hover:text-[var(--neon-magenta)] hover:bg-black border border-transparent hover:border-[var(--neon-magenta)] rounded-sm transition-all"
                 title="Logout"
                 data-testid="auth-logout-button"
               >
