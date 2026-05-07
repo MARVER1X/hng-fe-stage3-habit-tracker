@@ -1,6 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import LoginForm from '../../src/components/auth/LoginForm';
+import SignupForm from '../../src/components/auth/SignupForm';
 import { auth } from '../../src/lib/auth';
 
 // Mock Next.js router
@@ -10,27 +11,66 @@ vi.mock('next/navigation', () => ({
   }),
 }));
 
-describe('Auth Flow Integration', () => {
+describe('auth flow', () => {
   beforeEach(() => {
+    localStorage.clear();
     vi.clearAllMocks();
   });
 
-  it('should show error on empty login attempt', async () => {
-    render(<LoginForm />);
-    const submitButton = screen.getByRole('button', { name: /sign in/i });
-    fireEvent.click(submitButton);
-    expect(await screen.findByText(/please fill in all fields/i)).toBeInTheDocument();
+  it('submits the signup form and creates a session', async () => {
+    render(<SignupForm />);
+    
+    fireEvent.change(screen.getByTestId('auth-signup-email'), { target: { value: 'new@test.com' } });
+    fireEvent.change(screen.getByTestId('auth-signup-password'), { target: { value: 'password123' } });
+    
+    fireEvent.click(screen.getByTestId('auth-signup-submit'));
+    
+    await waitFor(() => {
+      const session = localStorage.getItem('habit-tracker-session');
+      expect(session).not.toBeNull();
+      expect(JSON.parse(session!).email).toBe('new@test.com');
+    });
   });
 
-  it('should call auth.login on valid submission', () => {
-    const loginSpy = vi.spyOn(auth, 'login');
+  it('shows an error for duplicate signup email', async () => {
+    // Pre-seed user
+    auth.signup('existing@test.com', 'password123');
+    
+    render(<SignupForm />);
+    
+    fireEvent.change(screen.getByTestId('auth-signup-email'), { target: { value: 'existing@test.com' } });
+    fireEvent.change(screen.getByTestId('auth-signup-password'), { target: { value: 'password123' } });
+    
+    fireEvent.click(screen.getByTestId('auth-signup-submit'));
+    
+    expect(await screen.findByText(/user already exists/i)).toBeInTheDocument();
+  });
+
+  it('submits the login form and stores the active session', async () => {
+    auth.signup('user@test.com', 'password123');
+    localStorage.removeItem('habit-tracker-session');
+    
     render(<LoginForm />);
     
-    fireEvent.change(screen.getByTestId('auth-login-email'), { target: { value: 'test@test.com' } });
+    fireEvent.change(screen.getByTestId('auth-login-email'), { target: { value: 'user@test.com' } });
     fireEvent.change(screen.getByTestId('auth-login-password'), { target: { value: 'password123' } });
     
-    fireEvent.click(screen.getByRole('button', { name: /sign in/i }));
+    fireEvent.click(screen.getByTestId('auth-login-submit'));
     
-    expect(loginSpy).toHaveBeenCalledWith('test@test.com', 'password123');
+    await waitFor(() => {
+      const session = localStorage.getItem('habit-tracker-session');
+      expect(session).not.toBeNull();
+    });
+  });
+
+  it('shows an error for invalid login credentials', async () => {
+    render(<LoginForm />);
+    
+    fireEvent.change(screen.getByTestId('auth-login-email'), { target: { value: 'wrong@test.com' } });
+    fireEvent.change(screen.getByTestId('auth-login-password'), { target: { value: 'wrongpass' } });
+    
+    fireEvent.click(screen.getByTestId('auth-login-submit'));
+    
+    expect(await screen.findByText(/invalid email or password/i)).toBeInTheDocument();
   });
 });
