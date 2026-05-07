@@ -15,9 +15,9 @@ test.describe('Habit Tracker Full Journey', () => {
 
     // 3. Perform Signup
     const testEmail = `user_${Date.now()}@example.com`;
-    await page.getByTestId('signup-email').fill(testEmail);
-    await page.getByTestId('signup-password').fill('password123');
-    await page.click('button[type="submit"]');
+    await page.getByTestId('auth-signup-email').fill(testEmail);
+    await page.getByTestId('auth-signup-password').fill('password123');
+    await page.click('data-testid=auth-signup-submit');
 
     // 4. Arrive at Dashboard (Empty State)
     await expect(page.getByTestId('dashboard-page')).toBeVisible();
@@ -27,13 +27,13 @@ test.describe('Habit Tracker Full Journey', () => {
     await page.click('text=New Habit');
     await page.getByTestId('habit-name-input').fill('Morning Run');
     await page.getByTestId('habit-description-input').fill('30 minutes every day');
-    await page.click('button[data-testid="habit-submit-button"]');
+    await page.click('data-testid=habit-save-button');
 
     // 6. Verify Habit exists
     await expect(page.getByTestId('habit-card-morning-run')).toBeVisible();
 
     // 7. Complete the Habit
-    await page.click('button[data-testid="habit-complete-button-morning-run"]');
+    await page.click(`button[data-testid="habit-complete-morning-run"]`);
     
     // 8. Verify Streak is updated to 1
     await expect(page.locator('[data-testid^="habit-card-"] .text-orange-600 .text-lg')).toHaveText('1');

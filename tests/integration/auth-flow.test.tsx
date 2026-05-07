@@ -26,8 +26,8 @@ describe('Auth Flow Integration', () => {
     const loginSpy = vi.spyOn(auth, 'login');
     render(<LoginForm />);
     
-    fireEvent.change(screen.getByTestId('login-email'), { target: { value: 'test@test.com' } });
-    fireEvent.change(screen.getByTestId('login-password'), { target: { value: 'password123' } });
+    fireEvent.change(screen.getByTestId('auth-login-email'), { target: { value: 'test@test.com' } });
+    fireEvent.change(screen.getByTestId('auth-login-password'), { target: { value: 'password123' } });
     
     fireEvent.click(screen.getByRole('button', { name: /sign in/i }));
     

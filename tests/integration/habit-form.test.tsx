@@ -10,7 +10,7 @@ describe('Habit Form Integration', () => {
     fireEvent.change(screen.getByTestId('habit-name-input'), { target: { value: 'New Habit' } });
     fireEvent.change(screen.getByTestId('habit-description-input'), { target: { value: 'Description' } });
     
-    fireEvent.click(screen.getByTestId('habit-submit-button'));
+    fireEvent.click(screen.getByTestId('habit-save-button'));
 
     expect(handleSubmit).toHaveBeenCalledWith({
       name: 'New Habit',
@@ -23,7 +23,7 @@ describe('Habit Form Integration', () => {
     render(<HabitForm onSubmit={handleSubmit} onCancel={() => {}} />);
 
     // Empty name
-    fireEvent.click(screen.getByTestId('habit-submit-button'));
+    fireEvent.click(screen.getByTestId('habit-save-button'));
 
     expect(await screen.findByText(/habit name is required/i)).toBeInTheDocument();
     expect(handleSubmit).not.toHaveBeenCalled();
