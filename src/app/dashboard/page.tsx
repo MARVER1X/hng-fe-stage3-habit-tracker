@@ -66,7 +66,7 @@ export default function DashboardPage() {
     } else {
       // Create new
       const newHabit: Habit = {
-        id: Math.random().toString(36).substring(2, 9),
+        id: crypto.randomUUID(),
         userId: user?.userId || '',
         name: data.name || '',
         description: data.description || '',
