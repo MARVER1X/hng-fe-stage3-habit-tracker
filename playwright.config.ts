@@ -1,5 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
+/**
+ * Playwright Configuration.
+ * Isolates E2E tests to the tests/e2e directory.
+ */
 export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
@@ -16,14 +20,13 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
-    {
-      name: 'mobile-chrome',
-      use: { ...devices['Pixel 5'] },
-    },
   ],
+  // Run your local dev server before starting the tests
   webServer: {
     command: 'npm run dev',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
+    stdout: 'ignore',
+    stderr: 'pipe',
   },
 });

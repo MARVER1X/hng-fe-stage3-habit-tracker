@@ -7,11 +7,22 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
-    setupFiles: ['./tests/setup.ts'],
+    setupFiles: './tests/setup.ts',
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/tests/e2e/**', // Ignore Playwright tests
+    ],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      include: ['src/lib/**'],
+      exclude: [
+        'node_modules/',
+        'tests/',
+        'next.config.ts',
+        'postcss.config.mjs',
+        'tailwind.config.ts',
+      ],
     },
   },
   resolve: {
