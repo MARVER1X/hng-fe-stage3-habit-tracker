@@ -68,7 +68,7 @@ const LoginForm: React.FC = () => {
             onChange={(e) => setEmail(e.target.value)}
             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
             placeholder="name@example.com"
-            data-testid="login-email"
+            data-testid="auth-login-email"
           />
         </div>
 
@@ -82,7 +82,7 @@ const LoginForm: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
             placeholder="••••••••"
-            data-testid="login-password"
+            data-testid="auth-login-password"
           />
         </div>
       </div>
@@ -90,6 +90,7 @@ const LoginForm: React.FC = () => {
       <button
         type="submit"
         disabled={isLoading}
+        data-testid="auth-login-submit"
         className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
       >
         {isLoading ? 'Signing in...' : 'Sign In'}

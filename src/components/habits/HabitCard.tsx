@@ -17,6 +17,7 @@ interface HabitCardProps {
  * Displays individual habit progress and controls.
  */
 const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggle, onDelete, onEdit }) => {
+  const [isConfirmingDelete, setIsConfirmingDelete] = React.useState(false);
   const slug = getHabitSlug(habit.name);
   const streak = calculateCurrentStreak(habit.completions);
   const today = new Date().toISOString().split('T')[0];
@@ -41,32 +42,50 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggle, onDelete, onEdit
 
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5 text-orange-600">
-            <span className="text-lg font-bold">{streak}</span>
+            <span className="text-lg font-bold" data-testid={`habit-streak-${slug}`}>{streak}</span>
             <span className="text-xs font-medium uppercase">Day Streak</span>
           </div>
           
-          <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-            <button 
-              onClick={() => onEdit(habit)}
-              className="text-xs font-semibold text-gray-400 hover:text-blue-600"
-              data-testid={`habit-edit-${slug}`}
-            >
-              Edit
-            </button>
-            <button 
-              onClick={() => onDelete(habit.id)}
-              className="text-xs font-semibold text-gray-400 hover:text-red-600"
-              data-testid={`habit-delete-${slug}`}
-            >
-              Delete
-            </button>
-          </div>
+            {isConfirmingDelete ? (
+              <div className="flex gap-2">
+                <button 
+                  onClick={() => onDelete(habit.id)}
+                  className="text-xs font-bold text-red-600 hover:underline"
+                  data-testid="confirm-delete-button"
+                >
+                  Confirm Delete
+                </button>
+                <button 
+                  onClick={() => setIsConfirmingDelete(false)}
+                  className="text-xs font-semibold text-gray-400 hover:text-gray-600"
+                >
+                  Cancel
+                </button>
+              </div>
+            ) : (
+              <>
+                <button 
+                  onClick={() => onEdit(habit)}
+                  className="text-xs font-semibold text-gray-400 hover:text-blue-600"
+                  data-testid={`habit-edit-${slug}`}
+                >
+                  Edit
+                </button>
+                <button 
+                  onClick={() => setIsConfirmingDelete(true)}
+                  className="text-xs font-semibold text-gray-400 hover:text-red-600"
+                  data-testid={`habit-delete-${slug}`}
+                >
+                  Delete
+                </button>
+              </>
+            )}
         </div>
       </div>
 
       <button
         onClick={() => onToggle(habit.id)}
-        data-testid={`habit-complete-button-${slug}`}
+        data-testid={`habit-complete-${slug}`}
         className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 ${
           isCompletedToday 
             ? 'bg-green-500 text-white shadow-lg shadow-green-100 rotate-0' 

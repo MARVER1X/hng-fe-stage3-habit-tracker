@@ -88,6 +88,20 @@ const HabitForm: React.FC<HabitFormProps> = ({ initialData, onSubmit, onCancel }
               data-testid="habit-description-input"
             />
           </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+              Frequency
+            </label>
+            <select
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-500 outline-none cursor-not-allowed"
+              data-testid="habit-frequency-select"
+              disabled
+              value="daily"
+            >
+              <option value="daily">Daily</option>
+            </select>
+          </div>
         </div>
 
         <div className="p-6 bg-gray-50 flex gap-3">
@@ -101,7 +115,7 @@ const HabitForm: React.FC<HabitFormProps> = ({ initialData, onSubmit, onCancel }
           <button
             type="submit"
             className="flex-1 py-3 px-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200"
-            data-testid="habit-submit-button"
+            data-testid="habit-save-button"
           >
             {initialData ? 'Save Changes' : 'Create Habit'}
           </button>

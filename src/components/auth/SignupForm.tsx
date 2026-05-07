@@ -73,7 +73,7 @@ const SignupForm: React.FC = () => {
             onChange={(e) => setEmail(e.target.value)}
             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
             placeholder="name@example.com"
-            data-testid="signup-email"
+            data-testid="auth-signup-email"
           />
         </div>
 
@@ -87,7 +87,7 @@ const SignupForm: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
             placeholder="Minimum 6 characters"
-            data-testid="signup-password"
+            data-testid="auth-signup-password"
           />
         </div>
       </div>
@@ -95,6 +95,7 @@ const SignupForm: React.FC = () => {
       <button
         type="submit"
         disabled={isLoading}
+        data-testid="auth-signup-submit"
         className="w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
       >
         {isLoading ? 'Creating account...' : 'Create Account'}

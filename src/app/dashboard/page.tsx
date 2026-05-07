@@ -52,10 +52,8 @@ export default function DashboardPage() {
   };
 
   const handleDelete = (id: string) => {
-    if (window.confirm('Are you sure you want to delete this habit? All progress will be lost.')) {
-      const updated = habits.filter(h => h.id !== id);
-      saveAndRefresh(updated);
-    }
+    const updated = habits.filter(h => h.id !== id);
+    saveAndRefresh(updated);
   };
 
   const handleFormSubmit = (data: Partial<Habit>) => {
@@ -104,6 +102,7 @@ export default function DashboardPage() {
               <button 
                 onClick={() => setShowForm(true)}
                 className="px-6 py-3 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-100 flex items-center gap-2"
+                data-testid="create-habit-button"
               >
                 <span className="text-xl">+</span>
                 New Habit
@@ -113,6 +112,7 @@ export default function DashboardPage() {
                 onClick={handleLogout}
                 className="p-3 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-2xl transition-all"
                 title="Logout"
+                data-testid="auth-logout-button"
               >
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
