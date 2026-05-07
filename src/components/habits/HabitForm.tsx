@@ -70,7 +70,6 @@ const HabitForm: React.FC<HabitFormProps> = ({ initialData, onSubmit, onCancel }
               placeholder="e.g., Morning Run"
               data-testid="habit-name-input"
               maxLength={60}
-              required
             />
             <p className="mt-1 text-xs text-gray-400 text-right">
               {name.length}/60 characters

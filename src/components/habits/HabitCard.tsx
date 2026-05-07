@@ -66,7 +66,7 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggle, onDelete, onEdit
 
       <button
         onClick={() => onToggle(habit.id)}
-        data-testid={`habit-complete-${slug}`}
+        data-testid={`habit-complete-button-${slug}`}
         className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 ${
           isCompletedToday 
             ? 'bg-green-500 text-white shadow-lg shadow-green-100 rotate-0' 

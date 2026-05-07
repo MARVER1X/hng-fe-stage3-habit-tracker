@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { auth } from '@/lib/auth';
+import Link from 'next/link';
 
 /**
  * LoginForm Component.
@@ -68,7 +69,6 @@ const LoginForm: React.FC = () => {
             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
             placeholder="name@example.com"
             data-testid="login-email"
-            required
           />
         </div>
 
@@ -83,7 +83,6 @@ const LoginForm: React.FC = () => {
             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
             placeholder="••••••••"
             data-testid="login-password"
-            required
           />
         </div>
       </div>
@@ -98,9 +97,9 @@ const LoginForm: React.FC = () => {
 
       <p className="text-center text-sm text-gray-600">
         Don't have an account?{' '}
-        <a href="/signup" className="text-blue-600 font-semibold hover:underline">
+        <Link href="/signup" className="text-blue-600 font-semibold hover:underline">
           Sign up
-        </a>
+        </Link>
       </p>
     </form>
   );

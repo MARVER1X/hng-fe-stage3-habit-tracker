@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { auth } from '@/lib/auth';
+import Link from 'next/link';
 
 /**
  * SignupForm Component.
@@ -73,7 +74,6 @@ const SignupForm: React.FC = () => {
             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
             placeholder="name@example.com"
             data-testid="signup-email"
-            required
           />
         </div>
 
@@ -88,7 +88,6 @@ const SignupForm: React.FC = () => {
             className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
             placeholder="Minimum 6 characters"
             data-testid="signup-password"
-            required
           />
         </div>
       </div>
@@ -103,9 +102,9 @@ const SignupForm: React.FC = () => {
 
       <p className="text-center text-sm text-gray-600">
         Already have an account?{' '}
-        <a href="/login" className="text-green-600 font-semibold hover:underline">
+        <Link href="/login" className="text-green-600 font-semibold hover:underline">
           Log in
-        </a>
+        </Link>
       </p>
     </form>
   );
