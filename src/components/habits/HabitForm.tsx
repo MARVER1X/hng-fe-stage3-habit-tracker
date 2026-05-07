@@ -59,10 +59,14 @@ const HabitForm: React.FC<HabitFormProps> = ({ initialData, onSubmit, onCancel }
           )}
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
+            <label 
+              htmlFor="habit-name"
+              className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1"
+            >
               Habit Name
             </label>
             <input
+              id="habit-name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -77,10 +81,14 @@ const HabitForm: React.FC<HabitFormProps> = ({ initialData, onSubmit, onCancel }
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
+            <label 
+              htmlFor="habit-description"
+              className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1"
+            >
               Description (Optional)
             </label>
             <textarea
+              id="habit-description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none h-24"
@@ -90,10 +98,14 @@ const HabitForm: React.FC<HabitFormProps> = ({ initialData, onSubmit, onCancel }
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
+            <label 
+              htmlFor="habit-frequency"
+              className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1"
+            >
               Frequency
             </label>
             <select
+              id="habit-frequency"
               className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-500 bg-gray-50 dark:bg-gray-900 text-gray-500 dark:text-gray-300 outline-none cursor-not-allowed"
               data-testid="habit-frequency-select"
               disabled

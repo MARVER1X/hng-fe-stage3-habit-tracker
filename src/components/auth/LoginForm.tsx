@@ -59,10 +59,14 @@ const LoginForm: React.FC = () => {
 
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label 
+            htmlFor="auth-login-email"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          >
             Email Address
           </label>
           <input
+            id="auth-login-email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -73,10 +77,14 @@ const LoginForm: React.FC = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label 
+            htmlFor="auth-login-password"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          >
             Password
           </label>
           <input
+            id="auth-login-password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

@@ -66,15 +66,17 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggle, onDelete, onEdit
               <>
                 <button 
                   onClick={() => onEdit(habit)}
-                  className="text-[10px] sm:text-xs font-semibold text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400"
+                  className="text-[10px] sm:text-xs font-semibold text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded px-1"
                   data-testid={`habit-edit-${slug}`}
+                  aria-label={`Edit ${habit.name}`}
                 >
                   Edit
                 </button>
                 <button 
                   onClick={() => setIsConfirmingDelete(true)}
-                  className="text-[10px] sm:text-xs font-semibold text-gray-400 dark:text-gray-500 hover:text-red-600 dark:hover:text-red-400"
+                  className="text-[10px] sm:text-xs font-semibold text-gray-400 dark:text-gray-500 hover:text-red-600 dark:hover:text-red-400 focus:outline-none focus:ring-2 focus:ring-red-500 rounded px-1"
                   data-testid={`habit-delete-${slug}`}
+                  aria-label={`Delete ${habit.name}`}
                 >
                   Delete
                 </button>
@@ -86,11 +88,13 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggle, onDelete, onEdit
       <button
         onClick={() => onToggle(habit.id)}
         data-testid={`habit-complete-${slug}`}
-        className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+        className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/20 ${
           isCompletedToday 
             ? 'bg-green-500 text-white shadow-lg shadow-green-100 dark:shadow-none rotate-0' 
             : 'bg-gray-50 dark:bg-gray-800 text-gray-300 dark:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-400 dark:hover:text-gray-500 -rotate-3'
         }`}
+        aria-label={isCompletedToday ? `Mark ${habit.name} as incomplete` : `Mark ${habit.name} as complete`}
+        aria-pressed={isCompletedToday}
       >
         <svg 
           className={`w-7 h-7 sm:w-8 sm:h-8 transition-transform duration-500 ${isCompletedToday ? 'scale-110' : 'scale-90'}`} 
