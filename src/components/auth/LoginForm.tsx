@@ -17,7 +17,7 @@ const LoginForm: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
     setIsLoading(true);
@@ -34,7 +34,7 @@ const LoginForm: React.FC = () => {
     if (result.success) {
       router.push('/dashboard');
     } else {
-      setError(result.error || 'Invalid credentials');
+      setError(result.error || 'Invalid email or password');
     }
     
     setIsLoading(false);
