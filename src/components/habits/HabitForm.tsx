@@ -21,7 +21,7 @@ const HabitForm: React.FC<HabitFormProps> = ({ initialData, onSubmit, onCancel }
   const [description, setDescription] = useState(initialData?.description || '');
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
 
