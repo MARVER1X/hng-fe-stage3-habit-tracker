@@ -47,31 +47,31 @@ const SignupForm: React.FC = () => {
     // New user registration form is rendered
     <form 
       onSubmit={handleSubmit} 
-      className="cyber-card w-full max-w-md p-8 sm:p-10 space-y-6 sm:space-y-8 animate-in fade-in zoom-in duration-500"
+      className="cyber-card w-full max-w-md md:max-w-lg p-8 sm:p-10 md:p-12 space-y-6 sm:space-y-8 md:space-y-10 animate-in fade-in zoom-in duration-500"
       data-testid="signup-form"
     >
       <div className="text-center relative">
         <div className="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-[var(--neon-magenta)] opacity-50" />
         <div className="absolute -top-4 -right-4 w-8 h-8 border-t-2 border-r-2 border-[var(--neon-magenta)] opacity-50" />
         {/* Header section includes registration title and description */}
-        <h2 className="text-3xl sm:text-4xl font-black text-gray-900 dark:text-gray-100 uppercase tracking-tighter italic">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 dark:text-gray-100 uppercase tracking-tighter italic">
           Create Account
         </h2>
-        <p className="mt-2 text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">Join us to start tracking your habits.</p>
+        <p className="mt-3 text-[10px] md:text-xs font-black text-gray-400 uppercase tracking-[0.3em]">Join us to start tracking your habits.</p>
       </div>
 
       {error && (
-        <div className="p-3 bg-red-950/20 border border-red-500 text-red-500 text-[10px] font-black uppercase tracking-widest animate-pulse">
+        <div className="p-3 bg-red-950/20 border border-red-500 text-red-500 text-[10px] md:text-xs font-black uppercase tracking-widest animate-pulse">
           {error}
         </div>
       )}
 
       {/* Input fields for registration details are grouped */}
-      <div className="space-y-6">
+      <div className="space-y-6 md:space-y-8">
         <div>
           <label 
             htmlFor="auth-signup-email"
-            className="block text-[10px] font-black text-[var(--neon-cyan)] uppercase tracking-widest mb-2"
+            className="block text-[10px] md:text-xs font-black text-[var(--neon-cyan)] uppercase tracking-widest mb-3"
           >
             Email Address
           </label>
@@ -80,7 +80,7 @@ const SignupForm: React.FC = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-3 bg-black/5 border border-gray-300 dark:border-gray-800 text-gray-900 dark:text-white focus:border-[var(--neon-cyan)] focus:cyber-glow-cyan outline-none transition-all rounded-none font-mono text-sm"
+            className="w-full px-5 py-4 bg-black/5 border border-gray-300 dark:border-gray-800 text-gray-900 dark:text-white focus:border-[var(--neon-cyan)] focus:cyber-glow-cyan outline-none transition-all rounded-none font-mono text-sm md:text-base"
             placeholder="name@example.com"
             data-testid="auth-signup-email"
           />
@@ -89,7 +89,7 @@ const SignupForm: React.FC = () => {
         <div>
           <label 
             htmlFor="auth-signup-password"
-            className="block text-[10px] font-black text-[var(--neon-magenta)] uppercase tracking-widest mb-2"
+            className="block text-[10px] md:text-xs font-black text-[var(--neon-magenta)] uppercase tracking-widest mb-3"
           >
             Password
           </label>
@@ -98,7 +98,7 @@ const SignupForm: React.FC = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-3 bg-black/5 border border-gray-300 dark:border-gray-800 text-gray-900 dark:text-white focus:border-[var(--neon-magenta)] focus:cyber-glow-magenta outline-none transition-all rounded-none font-mono text-sm"
+            className="w-full px-5 py-4 bg-black/5 border border-gray-300 dark:border-gray-800 text-gray-900 dark:text-white focus:border-[var(--neon-magenta)] focus:cyber-glow-magenta outline-none transition-all rounded-none font-mono text-sm md:text-base"
             placeholder="••••••••"
             data-testid="auth-signup-password"
           />
@@ -109,7 +109,7 @@ const SignupForm: React.FC = () => {
         type="submit"
         disabled={isLoading}
         data-testid="auth-signup-submit"
-        className="w-full py-4 px-6 bg-black text-[var(--neon-magenta)] border border-[var(--neon-magenta)] text-xs font-black uppercase tracking-[0.4em] hover:bg-[var(--neon-magenta)] hover:text-black transition-all hover:cyber-glow-magenta disabled:opacity-30 relative group overflow-hidden"
+        className="w-full py-4 px-8 bg-black text-[var(--neon-magenta)] border border-[var(--neon-magenta)] text-xs md:text-sm font-black uppercase tracking-[0.4em] hover:bg-[var(--neon-magenta)] hover:text-black transition-all hover:cyber-glow-magenta disabled:opacity-30 relative group overflow-hidden"
       >
         <span className="relative z-10">{isLoading ? "Processing..." : "Sign Up"}</span>
         <div className="absolute inset-0 bg-[var(--neon-magenta)] translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
