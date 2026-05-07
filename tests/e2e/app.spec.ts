@@ -10,7 +10,7 @@ test.describe('Habit Tracker Full Journey', () => {
     await page.goto('/');
     
     // 2. Navigate to Signup
-    await page.click('text=Don\'t have an account? Sign up');
+    await page.click('a:has-text("Sign up")');
     await expect(page.getByTestId('signup-form')).toBeVisible();
 
     // 3. Perform Signup
@@ -36,7 +36,7 @@ test.describe('Habit Tracker Full Journey', () => {
     await page.click('button[data-testid="habit-complete-button-morning-run"]');
     
     // 8. Verify Streak is updated to 1
-    await expect(page.locator('text=1')).toBeVisible();
+    await expect(page.locator('[data-testid^="habit-card-"] .text-orange-600 .text-lg')).toHaveText('1');
     await expect(page.locator('text=Day Streak')).toBeVisible();
   });
 });
