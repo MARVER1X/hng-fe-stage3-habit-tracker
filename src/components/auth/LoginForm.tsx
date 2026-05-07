@@ -43,12 +43,12 @@ const LoginForm: React.FC = () => {
   return (
     <form 
       onSubmit={handleSubmit} 
-      className="w-full max-w-md bg-white p-6 sm:p-8 rounded-2xl shadow-xl space-y-5 sm:space-y-6"
+      className="w-full max-w-md bg-white dark:bg-gray-900 p-6 sm:p-8 rounded-2xl shadow-xl space-y-5 sm:space-y-6"
       data-testid="login-form"
     >
       <div className="text-center">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900">Welcome Back</h2>
-        <p className="mt-2 text-sm sm:text-base text-gray-600">Please enter your details to sign in.</p>
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-gray-100">Welcome Back</h2>
+        <p className="mt-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">Please enter your details to sign in.</p>
       </div>
 
       {error && (
@@ -96,7 +96,7 @@ const LoginForm: React.FC = () => {
         {isLoading ? 'Signing in...' : 'Sign In'}
       </button>
 
-      <p className="text-center text-sm text-gray-600">
+      <p className="text-center text-sm text-gray-600 dark:text-gray-400">
         Don't have an account?{' '}
         <Link href="/signup" className="text-blue-600 font-semibold hover:underline">
           Sign up

@@ -42,11 +42,11 @@ const HabitForm: React.FC<HabitFormProps> = ({ initialData, onSubmit, onCancel }
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50 backdrop-blur-sm">
       <form 
         onSubmit={handleSubmit}
-        className="w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200"
+        className="w-full max-w-md bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200"
         data-testid="habit-form"
       >
-        <div className="p-6 border-b border-gray-100">
-          <h2 className="text-xl font-bold text-gray-900">
+        <div className="p-6 border-b border-gray-100 dark:border-gray-500">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-gray-300">
             {initialData ? 'Edit Habit' : 'New Habit'}
           </h2>
         </div>
@@ -59,42 +59,42 @@ const HabitForm: React.FC<HabitFormProps> = ({ initialData, onSubmit, onCancel }
           )}
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
               Habit Name
             </label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
               placeholder="e.g., Morning Run"
               data-testid="habit-name-input"
               maxLength={60}
             />
-            <p className="mt-1 text-xs text-gray-400 text-right">
+            <p className="mt-1 text-xs text-gray-400 dark:text-gray-300 text-right">
               {name.length}/60 characters
             </p>
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
               Description (Optional)
             </label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none h-24"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none h-24"
               placeholder="Why is this habit important?"
               data-testid="habit-description-input"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
               Frequency
             </label>
             <select
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-500 outline-none cursor-not-allowed"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-500 bg-gray-50 dark:bg-gray-900 text-gray-500 dark:text-gray-300 outline-none cursor-not-allowed"
               data-testid="habit-frequency-select"
               disabled
               value="daily"
@@ -104,17 +104,17 @@ const HabitForm: React.FC<HabitFormProps> = ({ initialData, onSubmit, onCancel }
           </div>
         </div>
 
-        <div className="p-6 bg-gray-50 flex gap-3">
+        <div className="p-6 bg-gray-50 dark:bg-gray-900 flex gap-3">
           <button
             type="button"
             onClick={onCancel}
-            className="flex-1 py-3 px-4 bg-white border border-gray-200 text-gray-700 font-bold rounded-xl hover:bg-gray-100 transition-colors"
+            className="flex-1 py-3 px-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-500 text-gray-700 dark:text-gray-300 font-bold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="flex-1 py-3 px-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200"
+            className="flex-1 py-3 px-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-none"
             data-testid="habit-save-button"
           >
             {initialData ? 'Save Changes' : 'Create Habit'}

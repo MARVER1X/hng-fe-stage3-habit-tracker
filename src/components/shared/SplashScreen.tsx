@@ -7,7 +7,7 @@ import React from 'react';
 const SplashScreen: React.FC = () => {
   return (
     <div 
-      className="fixed inset-0 flex flex-col items-center justify-center bg-white z-50"
+      className="fixed inset-0 flex flex-col items-center justify-center bg-white dark:bg-gray-950 z-50"
       data-testid="splash-screen"
     >
       <div className="animate-pulse flex flex-col items-center">
@@ -26,10 +26,10 @@ const SplashScreen: React.FC = () => {
             />
           </svg>
         </div>
-        <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 tracking-tight">
           Habit Tracker
         </h1>
-        <p className="mt-2 text-gray-500 font-medium">Building better habits...</p>
+        <p className="mt-2 text-gray-500 dark:text-gray-400 font-medium">Building better habits...</p>
       </div>
     </div>
   );

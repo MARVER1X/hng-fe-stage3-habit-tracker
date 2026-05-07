@@ -89,20 +89,20 @@ export default function DashboardPage() {
   return (
     <ProtectedRoute>
       <main 
-        className="min-h-screen bg-white flex flex-col items-center"
+        className="min-h-screen bg-white dark:bg-gray-950 flex flex-col items-center"
         data-testid="dashboard-page"
       >
         <div className="w-full max-w-3xl px-4 py-6 sm:py-8">
           <header className="flex justify-between items-center mb-6 sm:mb-10">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">My Habits</h1>
-              <p className="text-gray-500 text-xs sm:text-sm mt-1">Hello, {user?.email}</p>
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-gray-300 tracking-tight">My Habits</h1>
+              <p className="text-gray-500 dark:text-gray-300 text-xs sm:text-sm mt-1">Hello, {user?.email}</p>
             </div>
             
             <div className="flex gap-2 sm:gap-3">
               <button 
                 onClick={() => setShowForm(true)}
-                className="px-3 py-2 sm:px-6 sm:py-3 bg-blue-600 text-white rounded-2xl text-xs sm:text-base font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-100 flex items-center gap-1 sm:gap-2"
+                className="px-3 py-2 sm:px-6 sm:py-3 bg-blue-600 text-white rounded-2xl text-xs sm:text-base font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200 dark:shadow-none flex items-center gap-1 sm:gap-2"
                 data-testid="create-habit-button"
               >
                 <span className="text-base sm:text-xl">+</span>
@@ -111,7 +111,7 @@ export default function DashboardPage() {
               
               <button 
                 onClick={handleLogout}
-                className="p-2 sm:p-3 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-2xl transition-all"
+                className="p-2 sm:p-3 text-gray-400 dark:text-gray-300 hover:text-red-600 hover:bg-red-50 rounded-2xl transition-all"
                 title="Logout"
                 data-testid="auth-logout-button"
               >

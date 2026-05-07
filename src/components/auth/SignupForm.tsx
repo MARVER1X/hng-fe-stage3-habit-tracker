@@ -48,12 +48,12 @@ const SignupForm: React.FC = () => {
   return (
     <form 
       onSubmit={handleSubmit} 
-      className="w-full max-w-md bg-white p-6 sm:p-8 rounded-2xl shadow-xl space-y-5 sm:space-y-6"
+      className="w-full max-w-md bg-white dark:bg-gray-900 p-6 sm:p-8 rounded-2xl shadow-xl space-y-5 sm:space-y-6"
       data-testid="signup-form"
     >
       <div className="text-center">
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900">Create Account</h2>
-        <p className="mt-2 text-sm sm:text-base text-gray-600">Join us to start tracking your habits.</p>
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-gray-100">Create Account</h2>
+        <p className="mt-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">Join us to start tracking your habits.</p>
       </div>
 
       {error && (
@@ -101,7 +101,7 @@ const SignupForm: React.FC = () => {
         {isLoading ? 'Creating account...' : 'Create Account'}
       </button>
 
-      <p className="text-center text-sm text-gray-600">
+      <p className="text-center text-sm text-gray-600 dark:text-gray-400">
         Already have an account?{' '}
         <Link href="/login" className="text-green-600 font-semibold hover:underline">
           Log in
