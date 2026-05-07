@@ -66,14 +66,14 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggle, onDelete, onEdit
               <>
                 <button 
                   onClick={() => onEdit(habit)}
-                  className="text-xs font-semibold text-gray-400 hover:text-blue-600"
+                  className="text-[10px] sm:text-xs font-semibold text-gray-400 hover:text-blue-600"
                   data-testid={`habit-edit-${slug}`}
                 >
                   Edit
                 </button>
                 <button 
                   onClick={() => setIsConfirmingDelete(true)}
-                  className="text-xs font-semibold text-gray-400 hover:text-red-600"
+                  className="text-[10px] sm:text-xs font-semibold text-gray-400 hover:text-red-600"
                   data-testid={`habit-delete-${slug}`}
                 >
                   Delete

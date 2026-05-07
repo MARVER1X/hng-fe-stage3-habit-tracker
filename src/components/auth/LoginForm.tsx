@@ -91,7 +91,7 @@ const LoginForm: React.FC = () => {
         type="submit"
         disabled={isLoading}
         data-testid="auth-login-submit"
-        className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+        className="w-full py-2.5 sm:py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base font-bold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
       >
         {isLoading ? 'Signing in...' : 'Sign In'}
       </button>

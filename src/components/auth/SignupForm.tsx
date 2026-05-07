@@ -96,7 +96,7 @@ const SignupForm: React.FC = () => {
         type="submit"
         disabled={isLoading}
         data-testid="auth-signup-submit"
-        className="w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+        className="w-full py-2.5 sm:py-3 px-4 bg-green-600 hover:bg-green-700 text-white text-sm sm:text-base font-bold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
       >
         {isLoading ? 'Creating account...' : 'Create Account'}
       </button>

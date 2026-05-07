@@ -101,10 +101,10 @@ export default function DashboardPage() {
             <div className="flex gap-2 sm:gap-3">
               <button 
                 onClick={() => setShowForm(true)}
-                className="px-4 py-2 sm:px-6 sm:py-3 bg-blue-600 text-white rounded-2xl text-sm sm:text-base font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-100 flex items-center gap-1 sm:gap-2"
+                className="px-3 py-2 sm:px-6 sm:py-3 bg-blue-600 text-white rounded-2xl text-xs sm:text-base font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-100 flex items-center gap-1 sm:gap-2"
                 data-testid="create-habit-button"
               >
-                <span className="text-lg sm:text-xl">+</span>
+                <span className="text-base sm:text-xl">+</span>
                 New Habit
               </button>
               
