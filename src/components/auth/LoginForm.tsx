@@ -43,12 +43,12 @@ const LoginForm: React.FC = () => {
   return (
     <form 
       onSubmit={handleSubmit} 
-      className="w-full max-w-md bg-white p-8 rounded-2xl shadow-xl space-y-6"
+      className="w-full max-w-md bg-white p-6 sm:p-8 rounded-2xl shadow-xl space-y-5 sm:space-y-6"
       data-testid="login-form"
     >
       <div className="text-center">
-        <h2 className="text-3xl font-extrabold text-gray-900">Welcome Back</h2>
-        <p className="mt-2 text-gray-600">Please enter your details to sign in.</p>
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900">Welcome Back</h2>
+        <p className="mt-2 text-sm sm:text-base text-gray-600">Please enter your details to sign in.</p>
       </div>
 
       {error && (
@@ -80,7 +80,7 @@ const LoginForm: React.FC = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+            className="w-full px-4 py-2.5 sm:py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
             placeholder="••••••••"
             data-testid="auth-login-password"
           />

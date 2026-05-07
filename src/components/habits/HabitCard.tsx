@@ -25,12 +25,12 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggle, onDelete, onEdit
 
   return (
     <div 
-      className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between group transition-all hover:shadow-md"
+      className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between group transition-all hover:shadow-md"
       data-testid={`habit-card-${slug}`}
     >
       <div className="flex-1">
-        <div className="flex items-center gap-2 mb-1">
-          <h3 className="text-lg font-bold text-gray-900">{habit.name}</h3>
+        <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
+          <h3 className="text-base sm:text-lg font-bold text-gray-900">{habit.name}</h3>
           <span className="px-2 py-0.5 bg-blue-50 text-blue-600 text-xs font-bold rounded-full uppercase tracking-wider">
             {habit.frequency}
           </span>
@@ -40,10 +40,10 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggle, onDelete, onEdit
           <p className="text-gray-500 text-sm mb-3 line-clamp-1">{habit.description}</p>
         )}
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <div className="flex items-center gap-1.5 text-orange-600">
-            <span className="text-lg font-bold" data-testid={`habit-streak-${slug}`}>{streak}</span>
-            <span className="text-xs font-medium uppercase">Day Streak</span>
+            <span className="text-base sm:text-lg font-bold" data-testid={`habit-streak-${slug}`}>{streak}</span>
+            <span className="text-[10px] sm:text-xs font-medium uppercase">Day Streak</span>
           </div>
           
             {isConfirmingDelete ? (
@@ -86,14 +86,14 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggle, onDelete, onEdit
       <button
         onClick={() => onToggle(habit.id)}
         data-testid={`habit-complete-${slug}`}
-        className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+        className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center transition-all duration-300 ${
           isCompletedToday 
             ? 'bg-green-500 text-white shadow-lg shadow-green-100 rotate-0' 
             : 'bg-gray-50 text-gray-300 hover:bg-gray-100 hover:text-gray-400 -rotate-3'
         }`}
       >
         <svg 
-          className={`w-8 h-8 transition-transform duration-500 ${isCompletedToday ? 'scale-110' : 'scale-90'}`} 
+          className={`w-7 h-7 sm:w-8 sm:h-8 transition-transform duration-500 ${isCompletedToday ? 'scale-110' : 'scale-90'}`} 
           fill="none" 
           viewBox="0 0 24 24" 
           stroke="currentColor"
